@@ -1,0 +1,41 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BIN	Makefile	/^BIN=bin$/;"	m
+CClient	progress.h	/^    class CClient: public CEvent {$/;"	c	namespace:PROGRESSDEMO
+CEvent	progress.h	/^    class CEvent {$/;"	c	namespace:PROGRESSDEMO
+CProgress	progress.cpp	/^    CProgress::CProgress () {$/;"	f	class:PROGRESSDEMO::CProgress
+CProgress	progress.h	/^    class CProgress {$/;"	c	namespace:PROGRESSDEMO
+Hello	progress.cpp	/^    void CProgress::Hello (){$/;"	f	class:PROGRESSDEMO::CProgress
+INC	Makefile	/^INC=\/home\/c\/.vim\/tags\/libevent-1.4.13-stable\/:${PWD}\/src$/;"	m
+Main	progress.cpp	/^    int Main () {$/;"	f	namespace:PROGRESSDEMO
+Main	tcp.cpp	/^    int Main() $/;"	f	namespace:TCPDEMO
+Main	test.cpp	/^int TESTDEMO::Main() {$/;"	f	class:TESTDEMO
+Main	time.cpp	/^    int Main() $/;"	f	namespace:Time
+PROGRESSDEMO	progress.cpp	/^namespace PROGRESSDEMO {$/;"	n	file:
+PROGRESSDEMO	progress.h	/^namespace PROGRESSDEMO {$/;"	n
+SRC	Makefile	/^SRC=src$/;"	m
+TCPDEMO	tcp.cpp	/^namespace TCPDEMO {$/;"	n	file:
+TESTDEMO	test.h	/^namespace TESTDEMO {$/;"	n
+TOOLS	Makefile	/^TOOLS=g++$/;"	m
+Time	time.cpp	/^namespace Time {$/;"	n	file:
+__HELLO_CPP__	hello.h	2;"	d
+__PROGRESSDEMO__	progress.h	2;"	d
+__TCPDEMO__	tcp.cpp	2;"	d	file:
+__TESTDEMO__	test.h	2;"	d
+__TIMEDEMO__	time.cpp	2;"	d	file:
+base	tcp.cpp	/^    struct event_base* base; $/;"	m	namespace:TCPDEMO	typeref:struct:TCPDEMO::event_base	file:
+create	progress.cpp	/^    void CProgress::create () {$/;"	f	class:PROGRESSDEMO::CProgress
+hello	hello.cpp	/^void hello (string str) {$/;"	f
+main	main.cpp	/^int main () {$/;"	f
+obj	Makefile	/^obj := $(patsubst %.cpp,%.o,$(wildcard *.cpp))$/;"	m
+onAccept	tcp.cpp	/^    void onAccept(int iSvrFd, short iEvent, void *arg) $/;"	f	namespace:TCPDEMO
+onRead	tcp.cpp	/^    void onRead(int iCliFd, short iEvent, void *arg) $/;"	f	namespace:TCPDEMO
+onTime	time.cpp	/^    void onTime(int sock, short event, void *arg) $/;"	f	namespace:Time
+p_cEvent	progress.h	/^        CEvent* p_cEvent;$/;"	m	class:PROGRESSDEMO::CProgress
+p_id	progress.h	/^        pid_t p_id;$/;"	m	class:PROGRESSDEMO::CProgress
+run	progress.cpp	/^    void CClient::run () {$/;"	f	class:PROGRESSDEMO::CClient
+setCEvent	progress.cpp	/^    void CProgress::setCEvent (CEvent* cEvent) {$/;"	f	class:PROGRESSDEMO::CProgress
