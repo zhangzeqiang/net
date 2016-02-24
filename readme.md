@@ -12,4 +12,36 @@ client1
 5. 客户进程可执行action#list，服务器会返回当前所有连接情况。
 6. 客户进程可执行action#send^to#1^msg#Hello id1.向用户id1发送消息msg.
 
+## 结果
+
+### client1 注册
+客户端成功连接服务器... 
+客户机建立连接... 
+action#register^from#1
+
+### client2 注册
+客户端成功连接服务器... 
+客户机建立连接... 
+action#register^from#2
+
+### client2发送数据给client1
+
+... ... 
+action#send^to#1^nsg#11^msg#This is a test.
+准备发送:action#send^to#1^nsg#11^msg#This is a test.
+服务器回复:send success.
+
+### client1收到client1发送过来的数据
+
+服务器回复:This is a test.
+
+### client1请求获取当前连接情况
+
+action#list
+准备发送:action#list
+
+### client1获取到服务器返回的连接情况
+
+服务器回复:(1,8),(2,7)
+其中1,2表示客户id;8,7表示socket描述符
 
