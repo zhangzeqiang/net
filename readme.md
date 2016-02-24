@@ -31,7 +31,7 @@ action#send^to#1^nsg#11^msg#This is a test.
 准备发送:action#send^to#1^nsg#11^msg#This is a test.
 服务器回复:send success.
 
-### client1收到client1发送过来的数据
+### client1收到client2发送过来的数据
 
 服务器回复:This is a test.
 
