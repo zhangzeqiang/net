@@ -45,3 +45,12 @@ action#list
 服务器回复:(1,8),(2,7)
 其中1,2表示客户id;8,7表示socket描述符
 
+### 执行make出现错误
+
+1. 提示/usr/bin/ld: cannot find -lxxx
+ubuntu下安装apt-get install libxxx-dev
+提示找不到-levent,则先安装libevent-dev
+
+2. /home/c/.vim/tags/libevent-1.4.13-stable/下放置着libevent库
+请到官网下载: http://libevent.org/
+
