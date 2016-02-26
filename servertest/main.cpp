@@ -9,6 +9,8 @@
 #include <stdio.h>
 
 #include "communicate.h"
+#include "incset.route"
+#include "testinc/fileopt.h"
 
 using namespace std;
 
@@ -21,6 +23,8 @@ struct event_base* base;
 
 void onRead(int iCliFd, short iEvent, void *arg); 
 void onAccept(int iSvrFd, short iEvent, void *arg); 
+void run ();
+void onTest ();
 
 void onRead(int iCliFd, short iEvent, void *arg) 
 { 
@@ -64,9 +68,7 @@ void onAccept(int iSvrFd, short iEvent, void *arg)
     event_add(pEvRead, NULL);
 }
 
-
-int main () {
-
+void run () {
     int iSvrFd;   
     struct sockaddr_in sSvrAddr; 
              
@@ -94,6 +96,71 @@ int main () {
 
     // 事件循环 
     event_base_dispatch(base); 
+
+}
+
+void onTest () {
+    // TCPController*controller = (TCPController*)CKClassFactory::getInstance().UseClass("CRegisterController");
+    // cout << controller->index() << endl;
+    // delete controller;
+    Utils::CFileOpt fileOpt;
+    char filename[] = "tmp/client.json";
+    // open file.
+    char* buff = fileOpt.readFileBuf (filename);
+    // cout << buff << endl;
+    
+    string str = buff;
+    list<string> arr_list = Utils::StringOpt::split (str, "^SHD^");
+    list<string>::iterator pos = arr_list.begin ();
+    cJSON *root;
+        
+    while (pos != arr_list.end ()) {
+        // cout << *pos << endl;
+
+        // 分配内存
+        char* tBuff = new char[(*pos).length ()];
+        strcpy (tBuff, ((*pos).c_str()));
+        root = cJSON_Parse(tBuff);
+
+        // 释放内存
+        delete tBuff;
+
+        if (root == NULL) {
+            cout << "root is null" << endl;
+            return ;
+        }
+        char *route = cJSON_GetObjectItem (root, "route")->valuestring;
+        if (route == NULL) {
+            cout << "route is null" << endl;
+            return ;
+        }
+        // cout << route << endl;
+        char tmp[] = "CController";
+        char *tRoute = new char[strlen (route)+strlen (tmp)+1];
+        sprintf (tRoute, "C%sController", route);         
+
+        cout << tRoute << endl;
+        TCPController*controller = (TCPController*)CKClassFactory::getInstance().UseClass(tRoute);
+        if (controller == NULL) {
+            controller = (TCPController *)CKClassFactory::getInstance ().UseClass ("CNofoundController");
+        }
+        if (controller != NULL) {
+            cout << controller->index() << endl;
+        }
+        delete controller;
+   
+        *pos++;
+    }
+    
+    cJSON_Delete (root);
+    // close file.
+    fileOpt.releaseBuf ();
+}
+
+int main () {
+
+    onTest ();
+    // run ();
     return 0;
 }
 

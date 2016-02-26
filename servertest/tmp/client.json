@@ -1,0 +1,14 @@
+^SHD^{
+    "route": "Register",
+    "fromuserid": "123"
+}^SHD^{
+    "route": "Send",
+    "touserid": "112",
+    "msg": "I'm client."
+}^SHD^{
+    "route": "Hello",
+    "msg": "Hello World."
+}^SHD^{
+    "route": "list",
+    "limit": 3 
+}
