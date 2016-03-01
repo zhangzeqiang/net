@@ -11,12 +11,48 @@ class CRegisterController: public TCPController {
         CRegisterController () {}
         static void* GetInstance (void) {return new CRegisterController();}
 
-        string index ();
+        string index (int socket, string jsonStr);
 };
 
 REGISTER_CLASS (CRegisterController);
 
-string CRegisterController::index () {
+string CRegisterController::index (int socket, string jsonStr) {
+
+    /** 注册 */
+    cout << "--- 注册 ---" << endl; 
+
+    // 分配内存
+    char* tBuff = new char[jsonStr.length ()];
+    strcpy (tBuff, jsonStr.c_str());
+    cJSON *root = cJSON_Parse (tBuff);
+
+    // 释放内存
+    delete tBuff;
+     
+    cJSON *jFrom = cJSON_GetObjectItem (root, "from");
+    if (jFrom == NULL) {
+        respond (socket, "Register", "1", "jFrom is null", NULL);
+        return "jFrom is null";
+    }
+    char* sFrom = jFrom->valuestring;
+    if (sFrom == NULL) {
+        respond (socket, "Register", "1", "sFrom is null", NULL);
+        return "sFrom is null";
+    }
+
+    string fromUser = sFrom;
+    /** 绑定用户id和socket */
+    if (SUCCESS == bindUserAndSocket (fromUser, socket) ) {
+        cout << "成功绑定" << endl;
+    } else {
+        cout << "绑定失败" << endl;
+        respond (socket, "Register", "1", "bind fail", NULL);
+        return "bind fail.";
+    }
+   
+    respond (socket, "Register", "1", "register success", NULL);
+    // 删除root
+    cJSON_Delete (root);
 
     return "register"; 
 }

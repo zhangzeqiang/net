@@ -10,7 +10,10 @@ c_obj := $(patsubst %.c,%.o,$(wildcard *.c))
 pkg_cobj := $(patsubst pkg/%.c,pkg/%.o,$(wildcard pkg/*.c))
 pkg_cppobj := $(patsubst pkg/%.cpp,pkg/%.o,$(wildcard pkg/*.cpp))
 
-main:${cpp_obj} ${c_obj} ${pkg_cobj} ${pkg_cppobj}
+include_cobj := $(patsubst include/%.c,include/%.o,$(wildcard include/*.c))
+include_cppobj := $(patsubst include/%.cpp,include/%.o,$(wildcard include/*.cpp))
+
+main:${cpp_obj} ${c_obj} ${pkg_cobj} ${pkg_cppobj} ${include_cobj} ${include_cppobj}
 	${TOOLS} -o $@ $^ -levent -I ${INC}
 
 # %cpp:%o
@@ -22,4 +25,5 @@ install:
 clean: 
 	rm *.o
 	rm pkg/*.o
+	rm include/*.o
 

@@ -1,11 +1,12 @@
 #ifndef __FILEOPT_H__
 #define __FILEOPT_H__
 
+#include <stdlib.h>
+#include <stdio.h>
 #include <iostream>
 #include <string.h>
 #include <list>
 using namespace std;
-
 
 namespace Utils {
 

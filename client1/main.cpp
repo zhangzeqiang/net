@@ -43,7 +43,7 @@ void onRead(int iCliFd, short iEvent, void *arg)
     }
 
     buf[iLen] = 0;
-    cout<< "服务器回复:" << buf << endl;
+    cout<< "服务器:" << buf << endl;
 }
 
 void onWrite (int icliFd, short iEvent, void *arg)
@@ -71,8 +71,7 @@ void onInput (int iinpFd, short iEvent, void *arg)
 
     if (iLen > 0) 
     {
-        cout << "准备发送:" << buf << endl;
-
+        cout << "客户机:" << buf << endl;
         /** 最后一个字符为回车,去除,发送过滤处理不合适的字符 */
         buf[iLen-1] = 0;
         // 发送数据给服务器

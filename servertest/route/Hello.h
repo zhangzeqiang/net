@@ -11,12 +11,13 @@ class CHelloController: public TCPController {
     public:
         CHelloController () {}
         static void* GetInstance (void) {return new CHelloController();}
-        string index ();
+        string index (int socket, string jsonStr);
     
 };
 
-string CHelloController::index () {
+string CHelloController::index (int socket, string jsonStr) {
 
+    writeWithDefaultHeader (socket, "hello");
     return "hello"; 
 }
 

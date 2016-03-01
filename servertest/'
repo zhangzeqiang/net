@@ -1,0 +1,55 @@
+#ifndef __SEND_CPP__
+#define __SEND_CPP__
+#include "TCPController.h"
+
+class CSendController: public TCPController {
+
+    public: 
+        // 声明
+        DECLARE_CLASS(CSendController);
+
+    public:
+        CSendController () {}
+        static void* GetInstance (void) {return new CSendController();}
+        string index (int socket, string jsonStr);
+    
+};
+
+string CSendController::index (int socket, string jsonStr) {
+    /** 发送 */
+    cout << "--- 消息转发---" << endl; 
+
+    cout << jsonStr << endl;
+    // 分配内存
+    char* tBuff = new char[jsonStr.length ()];
+    strcpy (tBuff, jsonStr.c_str());
+    cJSON *root = cJSON_Parse (tBuff);
+
+    // 释放内存
+    delete tBuff;
+     
+    cJSON *jTo = cJSON_GetObjectItem (root, "from");
+
+
+    int toSocket = getSocketWithUserid (toMap->second);
+     
+    char *sTmp = const_cast<char *> (msgMap->second.c_str());
+    if (getStateWithUserid (toMap->second) == USED && onReturn (toSocket, sTmp) == SUCCESS) {
+        // 转发成功
+        char retBuf[] = "send success.";
+        onReturn (iCliFd, retBuf);  
+    } else {
+        // 转发失败
+        char retBuf[] = "send fail.";
+        onReturn (iCliFd, retBuf);  
+    }
+     
+    cout << "to:" << toMap->second << ",msg:" << msgMap->second << endl;
+
+    return "send msg."; 
+}
+
+REGISTER_CLASS (CSendController);
+
+#endif
+

@@ -1,6 +1,12 @@
 
 #include "route/Hello.h"
+#include "route/List.h"
 #include "route/Nofound.h"
 #include "route/Register.h"
+#include "route/Send.h"
 #include "route/TCPController.h"
 #include "pkg/cJSON.h"
+#include "include/CKClassFactory.h"
+#include "include/ctypes.h"
+#include "include/fileopt.h"
+#include "include/progress.h"

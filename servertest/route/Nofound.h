@@ -11,11 +11,11 @@ class CNofoundController: public TCPController {
     public:
         CNofoundController () {}
         static void* GetInstance (void) {return new CNofoundController();}
-        string index ();
+        string index (int socket, string jsonStr);
     
 };
 
-string CNofoundController::index () {
+string CNofoundController::index (int socket, string jsonStr) {
 
     return "404"; 
 }

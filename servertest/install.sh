@@ -33,4 +33,17 @@ do
     fi
 done
 
+# append include/*.h to incset.route
+for file in include/*.h
+do
+    if test -f $file
+    then
+        echo ${bTmp}${file}${eTmp} >> ${route_h} 
+    fi
+    if test -d $file
+    then
+        echo $file 是目录
+    fi
+done
+
 
