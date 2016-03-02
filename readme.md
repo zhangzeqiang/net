@@ -54,3 +54,6 @@ ubuntu下安装apt-get install libxxx-dev
 2. /home/c/.vim/tags/libevent-1.4.13-stable/下放置着libevent库
 请到官网下载: http://libevent.org/
 
+## 具体命令请参考客户端readme
+[客户端命令](client1/readme.md)
+
