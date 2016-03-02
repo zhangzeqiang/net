@@ -1,4 +1,6 @@
 
+#include "route/Acknowledge.h"
+#include "route/Bind.h"
 #include "route/Hello.h"
 #include "route/List.h"
 #include "route/Nofound.h"

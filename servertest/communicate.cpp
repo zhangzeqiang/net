@@ -20,10 +20,13 @@ void onResolve (int iCliFd, char *buf)
         cout << endl << "分段:" << *pos << endl;
 
         // 分配内存
-        char* tBuff = new char[(*pos).length ()];
-        strcpy (tBuff, ((*pos).c_str()));
-        root = cJSON_Parse(tBuff);
+        char* tBuff = new char[(*pos).length ()+1];
 
+        strcpy (tBuff, ((*pos).c_str()));
+        
+        cout << tBuff << endl;
+        root = cJSON_Parse(tBuff);
+        
         // 释放内存
         delete tBuff;
 
@@ -41,13 +44,16 @@ void onResolve (int iCliFd, char *buf)
             cout << "route is null" << endl;
             return ;
         }
-        // cout << route << endl;
+        cout << route << endl;
         char tmp[] = "CController";
         char *tRoute = new char[strlen (route)+strlen (tmp)+1];
         sprintf (tRoute, "C%sController", route);         
 
         cout << "--- 路由处理器: " << tRoute << " ------ " << endl;
         TCPController*controller = (TCPController*)CKClassFactory::getInstance().UseClass(tRoute);
+
+        // 释放内存
+        delete tRoute;
         if (controller == NULL) {
             // 找不到路由地址
             controller = (TCPController *)CKClassFactory::getInstance ().UseClass ("CNofoundController");

@@ -1,7 +1,9 @@
 #ifndef __REGISTER_H__
 #define __REGISTER_H__
 #include "TCPController.h"
-
+/**
+ * 注册用户和客服
+ */
 class CRegisterController: public TCPController {
 
     public:
@@ -39,10 +41,17 @@ string CRegisterController::index (int socket, string jsonStr) {
         respond (socket, "Register", "1", "sFrom is null", NULL);
         return "sFrom is null";
     }
+    
+    cJSON *jClass = cJSON_GetObjectItem (root, "class");
+    if (jClass == NULL) {
+        respond (socket, "Register", "0", "jClass is null", NULL);
+        return "jClass is null";
+    }
+    int iClass = jClass->valueint; // 用户-0,客服-1
 
     string fromUser = sFrom;
     /** 绑定用户id和socket */
-    if (SUCCESS == bindUserAndSocket (fromUser, socket) ) {
+    if (SUCCESS == bindUserAndSocket (fromUser, socket, iClass) ) {
         cout << "成功绑定" << endl;
     } else {
         cout << "绑定失败" << endl;

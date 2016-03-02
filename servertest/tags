@@ -1,0 +1,225 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BIN	Makefile	/^BIN=bin$/;"	m
+CAcknowledgeController	route/Acknowledge.h	/^        CAcknowledgeController () {}$/;"	f	class:CAcknowledgeController
+CAcknowledgeController	route/Acknowledge.h	/^REGISTER_CLASS (CAcknowledgeController);$/;"	v
+CAcknowledgeController	route/Acknowledge.h	/^class CAcknowledgeController: public TCPController {$/;"	c
+CBindController	route/Bind.h	/^        CBindController () {}$/;"	f	class:CBindController
+CBindController	route/Bind.h	/^REGISTER_CLASS (CBindController);$/;"	v
+CBindController	route/Bind.h	/^class CBindController: public TCPController {$/;"	c
+CEvent	include/progress.h	/^    class CEvent {$/;"	c	namespace:PROGRESSDEMO
+CFileOpt	include/fileopt.h	/^        CFileOpt () {}$/;"	f	class:Utils::CFileOpt
+CFileOpt	include/fileopt.h	/^        class CFileOpt {$/;"	c	namespace:Utils
+CHelloController	route/Hello.h	/^        CHelloController () {}$/;"	f	class:CHelloController
+CHelloController	route/Hello.h	/^REGISTER_CLASS (CHelloController);$/;"	v
+CHelloController	route/Hello.h	/^class CHelloController: public TCPController {$/;"	c
+CKClassFactory	include/CKClassFactory.h	/^        CKClassFactory () {}$/;"	f	class:CKClassFactory
+CKClassFactory	include/CKClassFactory.h	/^class CKClassFactory {$/;"	c
+CKDynamic	include/CKClassFactory.h	/^        CKDynamic (string name, __createClass method) {$/;"	f	class:CKDynamic
+CKDynamic	include/CKClassFactory.h	/^class CKDynamic {$/;"	c
+CListController	route/List.h	/^        CListController () {}$/;"	f	class:CListController
+CListController	route/List.h	/^REGISTER_CLASS (CListController);$/;"	v
+CListController	route/List.h	/^class CListController: public TCPController {$/;"	c
+CNofoundController	route/Nofound.h	/^        CNofoundController () {}$/;"	f	class:CNofoundController
+CNofoundController	route/Nofound.h	/^REGISTER_CLASS (CNofoundController);$/;"	v
+CNofoundController	route/Nofound.h	/^class CNofoundController: public TCPController {$/;"	c
+CProgress	include/progress.cpp	/^    CProgress::CProgress () {$/;"	f	class:PROGRESSDEMO::CProgress
+CProgress	include/progress.h	/^    class CProgress {$/;"	c	namespace:PROGRESSDEMO
+CRegisterController	route/Register.h	/^        CRegisterController () {}$/;"	f	class:CRegisterController
+CRegisterController	route/Register.h	/^REGISTER_CLASS (CRegisterController);$/;"	v
+CRegisterController	route/Register.h	/^class CRegisterController: public TCPController {$/;"	c
+CSendController	route/Send.h	/^        CSendController () {}$/;"	f	class:CSendController
+CSendController	route/Send.h	/^REGISTER_CLASS (CSendController);$/;"	v
+CSendController	route/Send.h	/^class CSendController: public TCPController {$/;"	c
+DECLARE_CLASS	include/CKClassFactory.h	41;"	d
+FAIL	include/ctypes.h	5;"	d
+GETCONTROLLER	include/CKClassFactory.h	38;"	d
+GetInstance	route/Acknowledge.h	/^        static void* GetInstance (void) {return new CAcknowledgeController();}$/;"	f	class:CAcknowledgeController
+GetInstance	route/Bind.h	/^        static void* GetInstance (void) {return new CBindController();}$/;"	f	class:CBindController
+GetInstance	route/Hello.h	/^        static void* GetInstance (void) {return new CHelloController();}$/;"	f	class:CHelloController
+GetInstance	route/List.h	/^        static void* GetInstance (void) {return new CListController();}$/;"	f	class:CListController
+GetInstance	route/Nofound.h	/^        static void* GetInstance (void) {return new CNofoundController();}$/;"	f	class:CNofoundController
+GetInstance	route/Register.h	/^        static void* GetInstance (void) {return new CRegisterController();}$/;"	f	class:CRegisterController
+GetInstance	route/Send.h	/^        static void* GetInstance (void) {return new CSendController();}$/;"	f	class:CSendController
+GetInstance	route/TCPController.h	/^        static void* GetInstance () {return NULL;}$/;"	f	class:TCPController
+INC	Makefile	/^INC=\/home\/c\/.vim\/tags\/libevent-1.4.13-stable\/:${PWD}\/src$/;"	m
+LEN_USERLISTS	bind.h	35;"	d
+PROGRESSDEMO	include/progress.cpp	/^namespace PROGRESSDEMO {$/;"	n	file:
+PROGRESSDEMO	include/progress.h	/^namespace PROGRESSDEMO {$/;"	n
+REGISTER_CLASS	include/CKClassFactory.h	44;"	d
+RegisterClass	include/CKClassFactory.cpp	/^void CKClassFactory::RegisterClass (string className, __createClass method) {$/;"	f	class:CKClassFactory
+SERVICE	bind.h	20;"	d
+SRC	Makefile	/^SRC=src$/;"	m
+SUCCESS	include/ctypes.h	4;"	d
+Smap	bind.h	/^typedef std::map<std::string, std::string> Smap;$/;"	t
+StringOpt	include/fileopt.h	/^    class StringOpt {$/;"	c	namespace:Utils
+TCPController	route/TCPController.h	/^        TCPController () {}$/;"	f	class:TCPController
+TCPController	route/TCPController.h	/^class TCPController $/;"	c
+TOOLS	Makefile	/^TOOLS=g++$/;"	m
+UNUSED	bind.h	18;"	d
+USED	bind.h	17;"	d
+USER	bind.h	21;"	d
+UseClass	include/CKClassFactory.cpp	/^void* CKClassFactory::UseClass (string className) {$/;"	f	class:CKClassFactory
+UserLists	bind.cpp	/^struct UserPack UserLists[LEN_USERLISTS];$/;"	v	typeref:struct:UserPack
+UserPack	bind.h	/^struct UserPack {$/;"	s
+Utils	include/fileopt.h	/^namespace Utils {$/;"	n
+__ACKNOWLEDGE_CPP__	route/Acknowledge.h	2;"	d
+__BIND_CPP__	route/Bind.h	2;"	d
+__BIND_H__	bind.h	2;"	d
+__CKCLASSFACTORY_H__	include/CKClassFactory.h	2;"	d
+__COMMUNICATE__H__	communicate.h	2;"	d
+__CTYPES_H__	include/ctypes.h	2;"	d
+__FILEOPT_H__	include/fileopt.h	2;"	d
+__HELLO_CPP__	route/Hello.h	2;"	d
+__LIST_H__	route/List.h	2;"	d
+__NOFOUND_CPP__	route/Nofound.h	2;"	d
+__PROGRESSDEMO__	include/progress.h	2;"	d
+__REGISTER_H__	route/Register.h	2;"	d
+__SEND_CPP__	route/Send.h	2;"	d
+__TCPController_H__	route/TCPController.h	2;"	d
+__createClass	include/CKClassFactory.h	/^typedef void* (*__createClass) (void);$/;"	t
+bindUserAndSocket	bind.cpp	/^int bindUserAndSocket (string userid, int socket, int classify) $/;"	f
+buff	include/fileopt.h	/^        char* buff;$/;"	m	class:Utils::CFileOpt
+buffer	pkg/cJson.c	/^typedef struct {char *buffer; int length; int offset; } printbuffer;$/;"	m	struct:__anon1	file:
+cJSON	pkg/cJSON.h	/^typedef struct cJSON {$/;"	s
+cJSON	pkg/cJSON.h	/^} cJSON;$/;"	t	typeref:struct:cJSON
+cJSON_AddBoolToObject	pkg/cJSON.h	137;"	d
+cJSON_AddFalseToObject	pkg/cJSON.h	136;"	d
+cJSON_AddItemReferenceToArray	pkg/cJson.c	/^void	cJSON_AddItemReferenceToArray(cJSON *array, cJSON *item)						{cJSON_AddItemToArray(array,create_reference(item));}$/;"	f
+cJSON_AddItemReferenceToObject	pkg/cJson.c	/^void	cJSON_AddItemReferenceToObject(cJSON *object,const char *string,cJSON *item)	{cJSON_AddItemToObject(object,string,create_reference(item));}$/;"	f
+cJSON_AddItemToArray	pkg/cJson.c	/^void   cJSON_AddItemToArray(cJSON *array, cJSON *item)						{cJSON *c=array->child;if (!item) return; if (!c) {array->child=item;} else {while (c && c->next) c=c->next; suffix_object(c,item);}}$/;"	f
+cJSON_AddItemToObject	pkg/cJson.c	/^void   cJSON_AddItemToObject(cJSON *object,const char *string,cJSON *item)	{if (!item) return; if (item->string) cJSON_free(item->string);item->string=cJSON_strdup(string);cJSON_AddItemToArray(object,item);}$/;"	f
+cJSON_AddItemToObjectCS	pkg/cJson.c	/^void   cJSON_AddItemToObjectCS(cJSON *object,const char *string,cJSON *item)	{if (!item) return; if (!(item->type&cJSON_StringIsConst) && item->string) cJSON_free(item->string);item->string=(char*)string;item->type|=cJSON_StringIsConst;cJSON_AddItemToArray(object,item);}$/;"	f
+cJSON_AddNullToObject	pkg/cJSON.h	134;"	d
+cJSON_AddNumberToObject	pkg/cJSON.h	138;"	d
+cJSON_AddStringToObject	pkg/cJSON.h	139;"	d
+cJSON_AddTrueToObject	pkg/cJSON.h	135;"	d
+cJSON_Array	pkg/cJSON.h	37;"	d
+cJSON_CreateArray	pkg/cJson.c	/^cJSON *cJSON_CreateArray(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_Array;return item;}$/;"	f
+cJSON_CreateBool	pkg/cJson.c	/^cJSON *cJSON_CreateBool(int b)					{cJSON *item=cJSON_New_Item();if(item)item->type=b?cJSON_True:cJSON_False;return item;}$/;"	f
+cJSON_CreateDoubleArray	pkg/cJson.c	/^cJSON *cJSON_CreateDoubleArray(const double *numbers,int count)	{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateNumber(numbers[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateFalse	pkg/cJson.c	/^cJSON *cJSON_CreateFalse(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_False;return item;}$/;"	f
+cJSON_CreateFloatArray	pkg/cJson.c	/^cJSON *cJSON_CreateFloatArray(const float *numbers,int count)	{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateNumber(numbers[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateIntArray	pkg/cJson.c	/^cJSON *cJSON_CreateIntArray(const int *numbers,int count)		{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateNumber(numbers[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateNull	pkg/cJson.c	/^cJSON *cJSON_CreateNull(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_NULL;return item;}$/;"	f
+cJSON_CreateNumber	pkg/cJson.c	/^cJSON *cJSON_CreateNumber(double num)			{cJSON *item=cJSON_New_Item();if(item){item->type=cJSON_Number;item->valuedouble=num;item->valueint=(int)num;}return item;}$/;"	f
+cJSON_CreateObject	pkg/cJson.c	/^cJSON *cJSON_CreateObject(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_Object;return item;}$/;"	f
+cJSON_CreateString	pkg/cJson.c	/^cJSON *cJSON_CreateString(const char *string)	{cJSON *item=cJSON_New_Item();if(item){item->type=cJSON_String;item->valuestring=cJSON_strdup(string);}return item;}$/;"	f
+cJSON_CreateStringArray	pkg/cJson.c	/^cJSON *cJSON_CreateStringArray(const char **strings,int count)	{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateString(strings[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateTrue	pkg/cJson.c	/^cJSON *cJSON_CreateTrue(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_True;return item;}$/;"	f
+cJSON_Delete	pkg/cJson.c	/^void cJSON_Delete(cJSON *c)$/;"	f
+cJSON_DeleteItemFromArray	pkg/cJson.c	/^void   cJSON_DeleteItemFromArray(cJSON *array,int which)			{cJSON_Delete(cJSON_DetachItemFromArray(array,which));}$/;"	f
+cJSON_DeleteItemFromObject	pkg/cJson.c	/^void   cJSON_DeleteItemFromObject(cJSON *object,const char *string) {cJSON_Delete(cJSON_DetachItemFromObject(object,string));}$/;"	f
+cJSON_DetachItemFromArray	pkg/cJson.c	/^cJSON *cJSON_DetachItemFromArray(cJSON *array,int which)			{cJSON *c=array->child;while (c && which>0) c=c->next,which--;if (!c) return 0;$/;"	f
+cJSON_DetachItemFromObject	pkg/cJson.c	/^cJSON *cJSON_DetachItemFromObject(cJSON *object,const char *string) {int i=0;cJSON *c=object->child;while (c && cJSON_strcasecmp(c->string,string)) i++,c=c->next;if (c) return cJSON_DetachItemFromArray(object,i);return 0;}$/;"	f
+cJSON_Duplicate	pkg/cJson.c	/^cJSON *cJSON_Duplicate(cJSON *item,int recurse)$/;"	f
+cJSON_False	pkg/cJSON.h	32;"	d
+cJSON_GetArrayItem	pkg/cJson.c	/^cJSON *cJSON_GetArrayItem(cJSON *array,int item)				{cJSON *c=array->child;  while (c && item>0) item--,c=c->next; return c;}$/;"	f
+cJSON_GetArraySize	pkg/cJson.c	/^int    cJSON_GetArraySize(cJSON *array)							{cJSON *c=array->child;int i=0;while(c)i++,c=c->next;return i;}$/;"	f
+cJSON_GetErrorPtr	pkg/cJson.c	/^const char *cJSON_GetErrorPtr(void) {return ep;}$/;"	f
+cJSON_GetObjectItem	pkg/cJson.c	/^cJSON *cJSON_GetObjectItem(cJSON *object,const char *string)	{cJSON *c=object->child; while (c && cJSON_strcasecmp(c->string,string)) c=c->next; return c;}$/;"	f
+cJSON_Hooks	pkg/cJSON.h	/^typedef struct cJSON_Hooks {$/;"	s
+cJSON_Hooks	pkg/cJSON.h	/^} cJSON_Hooks;$/;"	t	typeref:struct:cJSON_Hooks
+cJSON_InitHooks	pkg/cJson.c	/^void cJSON_InitHooks(cJSON_Hooks* hooks)$/;"	f
+cJSON_InsertItemInArray	pkg/cJson.c	/^void   cJSON_InsertItemInArray(cJSON *array,int which,cJSON *newitem)		{cJSON *c=array->child;while (c && which>0) c=c->next,which--;if (!c) {cJSON_AddItemToArray(array,newitem);return;}$/;"	f
+cJSON_IsReference	pkg/cJSON.h	40;"	d
+cJSON_Minify	pkg/cJson.c	/^void cJSON_Minify(char *json)$/;"	f
+cJSON_NULL	pkg/cJSON.h	34;"	d
+cJSON_New_Item	pkg/cJson.c	/^static cJSON *cJSON_New_Item(void)$/;"	f	file:
+cJSON_Number	pkg/cJSON.h	35;"	d
+cJSON_Object	pkg/cJSON.h	38;"	d
+cJSON_Parse	pkg/cJson.c	/^cJSON *cJSON_Parse(const char *value) {return cJSON_ParseWithOpts(value,0,0);}$/;"	f
+cJSON_ParseWithOpts	pkg/cJson.c	/^cJSON *cJSON_ParseWithOpts(const char *value,const char **return_parse_end,int require_null_terminated)$/;"	f
+cJSON_Print	pkg/cJson.c	/^char *cJSON_Print(cJSON *item)				{return print_value(item,0,1,0);}$/;"	f
+cJSON_PrintBuffered	pkg/cJson.c	/^char *cJSON_PrintBuffered(cJSON *item,int prebuffer,int fmt)$/;"	f
+cJSON_PrintUnformatted	pkg/cJson.c	/^char *cJSON_PrintUnformatted(cJSON *item)	{return print_value(item,0,0,0);}$/;"	f
+cJSON_ReplaceItemInArray	pkg/cJson.c	/^void   cJSON_ReplaceItemInArray(cJSON *array,int which,cJSON *newitem)		{cJSON *c=array->child;while (c && which>0) c=c->next,which--;if (!c) return;$/;"	f
+cJSON_ReplaceItemInObject	pkg/cJson.c	/^void   cJSON_ReplaceItemInObject(cJSON *object,const char *string,cJSON *newitem){int i=0;cJSON *c=object->child;while(c && cJSON_strcasecmp(c->string,string))i++,c=c->next;if(c){newitem->string=cJSON_strdup(string);cJSON_ReplaceItemInArray(object,i,newitem);}}$/;"	f
+cJSON_SetIntValue	pkg/cJSON.h	142;"	d
+cJSON_SetNumberValue	pkg/cJSON.h	143;"	d
+cJSON_String	pkg/cJSON.h	36;"	d
+cJSON_StringIsConst	pkg/cJSON.h	41;"	d
+cJSON_True	pkg/cJSON.h	33;"	d
+cJSON__h	pkg/cJSON.h	24;"	d
+cJSON_free	pkg/cJson.c	/^static void (*cJSON_free)(void *ptr) = free;$/;"	v	file:
+cJSON_malloc	pkg/cJson.c	/^static void *(*cJSON_malloc)(size_t sz) = malloc;$/;"	v	file:
+cJSON_strcasecmp	pkg/cJson.c	/^static int cJSON_strcasecmp(const char *s1,const char *s2)$/;"	f	file:
+cJSON_strdup	pkg/cJson.c	/^static char* cJSON_strdup(const char* str)$/;"	f	file:
+c_obj	Makefile	/^c_obj := $(patsubst %.c,%.o,$(wildcard *.c))$/;"	m
+child	pkg/cJSON.h	/^	struct cJSON *child;		\/* An array or object item will have a child pointer pointing to a chain of the items in the array\/object. *\/$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+classify	bind.h	/^    int classify; \/** 用户0, 客服1 *\/$/;"	m	struct:UserPack
+cpp_obj	Makefile	/^cpp_obj := $(patsubst %.cpp,%.o,$(wildcard *.cpp))$/;"	m
+create	include/progress.cpp	/^    void CProgress::create () {$/;"	f	class:PROGRESSDEMO::CProgress
+create_reference	pkg/cJson.c	/^static cJSON *create_reference(cJSON *item) {cJSON *ref=cJSON_New_Item();if (!ref) return 0;memcpy(ref,item,sizeof(cJSON));ref->string=0;ref->type|=cJSON_IsReference;ref->next=ref->prev=0;return ref;}$/;"	f	file:
+emptyUserLists	bind.cpp	/^void emptyUserLists() $/;"	f
+ensure	pkg/cJson.c	/^static char* ensure(printbuffer *p,int needed)$/;"	f	file:
+ep	pkg/cJson.c	/^static const char *ep;$/;"	v	file:
+fd	include/fileopt.h	/^        FILE* fd;$/;"	m	class:Utils::CFileOpt
+firstByteMark	pkg/cJson.c	/^static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };$/;"	v	file:
+free_fn	pkg/cJSON.h	/^      void (*free_fn)(void *ptr);$/;"	m	struct:cJSON_Hooks
+getInstance	include/CKClassFactory.cpp	/^CKClassFactory& CKClassFactory::getInstance () {$/;"	f	class:CKClassFactory
+getSocketWithUserid	bind.cpp	/^int getSocketWithUserid (string userid, int classify)$/;"	f
+getStateWithUserid	bind.cpp	/^int getStateWithUserid (string userid, int classify) {$/;"	f
+include_cobj	Makefile	/^include_cobj := $(patsubst include\/%.c,include\/%.o,$(wildcard include\/*.c))$/;"	m
+include_cppobj	Makefile	/^include_cppobj := $(patsubst include\/%.cpp,include\/%.o,$(wildcard include\/*.cpp))$/;"	m
+index	route/Acknowledge.h	/^string CAcknowledgeController::index (int socket, string jsonStr) {$/;"	f	class:CAcknowledgeController
+index	route/Bind.h	/^string CBindController::index (int socket, string jsonStr) {$/;"	f	class:CBindController
+index	route/Hello.h	/^string CHelloController::index (int socket, string jsonStr) {$/;"	f	class:CHelloController
+index	route/List.h	/^string CListController::index (int socket, string jsonStr) {$/;"	f	class:CListController
+index	route/Nofound.h	/^string CNofoundController::index (int socket, string jsonStr) {$/;"	f	class:CNofoundController
+index	route/Register.h	/^string CRegisterController::index (int socket, string jsonStr) {$/;"	f	class:CRegisterController
+index	route/Send.h	/^string CSendController::index (int socket, string jsonStr) {$/;"	f	class:CSendController
+length	pkg/cJson.c	/^typedef struct {char *buffer; int length; int offset; } printbuffer;$/;"	m	struct:__anon1	file:
+m_classMap	include/CKClassFactory.h	/^        map<string, __createClass> m_classMap;$/;"	m	class:CKClassFactory
+main	main.cpp	/^int main () {$/;"	f
+malloc_fn	pkg/cJSON.h	/^      void *(*malloc_fn)(size_t sz);$/;"	m	struct:cJSON_Hooks
+next	pkg/cJSON.h	/^	struct cJSON *next,*prev;	\/* next\/prev allow you to walk array\/object chains. Alternatively, use GetArraySize\/GetArrayItem\/GetObjectItem *\/$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+offset	pkg/cJson.c	/^typedef struct {char *buffer; int length; int offset; } printbuffer;$/;"	m	struct:__anon1	file:
+onClose	communicate.cpp	/^int onClose (int iCliFd) {$/;"	f
+onResolve	communicate.cpp	/^void onResolve (int iCliFd, char *buf) $/;"	f
+onReturn	route/TCPController.h	/^        int onReturn (int iCliFd, const char *sendBuf) {$/;"	f	class:TCPController
+p_cEvent	include/progress.h	/^        CEvent* p_cEvent;$/;"	m	class:PROGRESSDEMO::CProgress
+p_id	include/progress.h	/^        pid_t p_id;$/;"	m	class:PROGRESSDEMO::CProgress
+parse_array	pkg/cJson.c	/^static const char *parse_array(cJSON *item,const char *value)$/;"	f	file:
+parse_hex4	pkg/cJson.c	/^static unsigned parse_hex4(const char *str)$/;"	f	file:
+parse_number	pkg/cJson.c	/^static const char *parse_number(cJSON *item,const char *num)$/;"	f	file:
+parse_object	pkg/cJson.c	/^static const char *parse_object(cJSON *item,const char *value)$/;"	f	file:
+parse_string	pkg/cJson.c	/^static const char *parse_string(cJSON *item,const char *str)$/;"	f	file:
+parse_value	pkg/cJson.c	/^static const char *parse_value(cJSON *item,const char *value)$/;"	f	file:
+pkg_cobj	Makefile	/^pkg_cobj := $(patsubst pkg\/%.c,pkg\/%.o,$(wildcard pkg\/*.c))$/;"	m
+pkg_cppobj	Makefile	/^pkg_cppobj := $(patsubst pkg\/%.cpp,pkg\/%.o,$(wildcard pkg\/*.cpp))$/;"	m
+pow2gt	pkg/cJson.c	/^static int pow2gt (int x)	{	--x;	x|=x>>1;	x|=x>>2;	x|=x>>4;	x|=x>>8;	x|=x>>16;	return x+1;	}$/;"	f	file:
+prev	pkg/cJSON.h	/^	struct cJSON *next,*prev;	\/* next\/prev allow you to walk array\/object chains. Alternatively, use GetArraySize\/GetArrayItem\/GetObjectItem *\/$/;"	m	struct:cJSON	typeref:struct:cJSON::
+print_array	pkg/cJson.c	/^static char *print_array(cJSON *item,int depth,int fmt,printbuffer *p)$/;"	f	file:
+print_number	pkg/cJson.c	/^static char *print_number(cJSON *item,printbuffer *p)$/;"	f	file:
+print_object	pkg/cJson.c	/^static char *print_object(cJSON *item,int depth,int fmt,printbuffer *p)$/;"	f	file:
+print_string	pkg/cJson.c	/^static char *print_string(cJSON *item,printbuffer *p)	{return print_string_ptr(item->valuestring,p);}$/;"	f	file:
+print_string_ptr	pkg/cJson.c	/^static char *print_string_ptr(const char *str,printbuffer *p)$/;"	f	file:
+print_value	pkg/cJson.c	/^static char *print_value(cJSON *item,int depth,int fmt,printbuffer *p)$/;"	f	file:
+printbuffer	pkg/cJson.c	/^typedef struct {char *buffer; int length; int offset; } printbuffer;$/;"	t	typeref:struct:__anon1	file:
+readFileBuf	include/fileopt.h	/^        char* readFileBuf (const char* filename) {$/;"	f	class:Utils::CFileOpt
+releaseBuf	include/fileopt.h	/^        void releaseBuf () {$/;"	f	class:Utils::CFileOpt
+respond	route/TCPController.h	/^        int respond (int socket, char const* s_action, char const* s_errcode,$/;"	f	class:TCPController
+setCEvent	include/progress.cpp	/^    void CProgress::setCEvent (CEvent* cEvent) {$/;"	f	class:PROGRESSDEMO::CProgress
+skip	pkg/cJson.c	/^static const char *skip(const char *in) {while (in && *in && (unsigned char)*in<=32) in++; return in;}$/;"	f	file:
+socket	bind.h	/^    int socket;$/;"	m	struct:UserPack
+split	include/fileopt.h	/^            static list<string> split (string str, string separator) {$/;"	f	class:Utils::StringOpt
+state	bind.h	/^    unsigned char state; \/** used-0, unused-1  *\/$/;"	m	struct:UserPack
+string	pkg/cJSON.h	/^	char *string;				\/* The item's name string, if this item is the child of, or is in the list of subitems of an object. *\/$/;"	m	struct:cJSON
+suffix_object	pkg/cJson.c	/^static void suffix_object(cJSON *prev,cJSON *item) {prev->next=item;item->prev=prev;}$/;"	f	file:
+type	pkg/cJSON.h	/^	int type;					\/* The type of the item, as above. *\/$/;"	m	struct:cJSON
+unBindAll	bind.cpp	/^void unBindAll ()$/;"	f
+unbindUserAndSocket	bind.cpp	/^int unbindUserAndSocket (int socket)$/;"	f
+unbindUserAndSocket	bind.cpp	/^int unbindUserAndSocket (string userid, int classify)$/;"	f
+update	pkg/cJson.c	/^static int update(printbuffer *p)$/;"	f	file:
+userid	bind.h	/^    string userid;$/;"	m	struct:UserPack
+valuedouble	pkg/cJSON.h	/^	double valuedouble;			\/* The item's number, if type==cJSON_Number *\/$/;"	m	struct:cJSON
+valueint	pkg/cJSON.h	/^	int valueint;				\/* The item's number, if type==cJSON_Number *\/$/;"	m	struct:cJSON
+valuestring	pkg/cJSON.h	/^	char *valuestring;			\/* The item's string, if type==cJSON_String *\/$/;"	m	struct:cJSON
+writeWithDefaultHeader	route/TCPController.h	/^        int writeWithDefaultHeader (int socket, const char* buf) {$/;"	f	class:TCPController
+~CFileOpt	include/fileopt.h	/^        virtual ~CFileOpt () {}$/;"	f	class:Utils::CFileOpt
+~CKClassFactory	include/CKClassFactory.h	/^        virtual ~CKClassFactory () {$/;"	f	class:CKClassFactory

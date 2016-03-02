@@ -13,6 +13,10 @@ using namespace std;
 // 事件
 struct event_base* base;
 
+struct event *pEvInput = new event; 
+
+struct event *pEvRead = new event;
+
 // 配置
 #define PORT 8888
 #define SERVERADDR "127.0.0.1"
@@ -36,8 +40,10 @@ void onRead(int iCliFd, short iEvent, void *arg)
         // 连接结束=0 | 连接错误<0, 将事件池删除并释放内存空间
         struct event *pEvRead = (struct event*)arg; 
         event_del(pEvRead); 
+        event_del (pEvInput); // 删除标准输入监听
         delete pEvRead; 
                       
+        close (STDIN_FILENO);
         close(iCliFd); 
         return;
     }
@@ -88,13 +94,11 @@ void onConnect (int iSvrFd)
     _icliFd = iSvrFd;
     
     /** 等待标准输入可读  */
-    struct event *pEvInput = new event; 
     event_set(pEvInput, STDIN_FILENO, EV_READ|EV_PERSIST, onInput, pEvInput); 
     event_base_set(base, pEvInput); 
     event_add(pEvInput, NULL);
 
     /** 等待socket可读 */
-    struct event *pEvRead = new event;
     event_set(pEvRead, iSvrFd, EV_READ|EV_PERSIST, onRead, pEvRead); 
     event_base_set(base, pEvRead); 
     event_add(pEvRead, NULL);

@@ -14,8 +14,14 @@
 using namespace std;
 #include "include/ctypes.h"
 
-#define USED 0
-#define UNUSED 1
+#define USED 0      // 在使用
+#define UNUSED 1    // 空闲区
+
+#define SERVICE 1   // 客服
+#define USER 0      // 用户
+
+#define NOEXIST -1
+#define EXIST -2
 
 /**
  * 将用户id和socket绑定,已实现转发通信
@@ -27,32 +33,51 @@ struct UserPack {
     unsigned char state; /** used-0, unused-1  */
 };
 
+/**
+ * 客服-用户绑定
+ */
+struct BindPack {
+    string serviceid;      /** 客服id*/
+    string userid;         /** 用户id*/
+    unsigned char state;    /** used-0, unused-1 */
+};
+
 typedef std::map<std::string, std::string> Smap;
 
 #define LEN_USERLISTS 100
-
+#define LEN_BINDENCE 100  // 客服-用户绑定关系
 /** 支持100个用户(包括普通用户和客服)在线 */
 extern struct UserPack UserLists[LEN_USERLISTS];
 
+/** 支持100个绑定关系 */
+extern struct BindPack BindLists[LEN_BINDENCE];
+
 /**
- * 用户和socket绑定
+ * 用户和socket绑定 (classify指定客服还是用户)
  */ 
 extern void emptyUserLists();
-extern int bindUserAndSocket (string userid, int socket);
-extern int unbindUserAndSocket (string userid);
+extern int bindUserAndSocket (string userid, int socket, int classify);
+extern int unbindUserAndSocket (string userid, int classify);
 extern int unbindUserAndSocket (int socket);
-extern int getSocketWithUserid (string userid);
-extern int getStateWithUserid (string userid);
+extern int getSocketWithUserid (string userid, int classify);
+extern string getUserWithSocket (int socket, int classify);
+extern int getStateWithUserid (string userid, int classify);
 extern void unBindAll();
 
 /**
- * 客服和socket绑定(注意客服与用户共用一块存储)
+ * 客服和用户socket绑定
  */
-// extern int bindServicerAndSocket (String serviceid, int socket);
-// extern int unbindServicerAndSocket (string serviceid);
-// extern int unbindServicerAndSocket (int socket);
-// extern int getSocketWithServiceId (string serviceId);
-// extern int getStateWithServiceId (string serviceId);
+extern int addBindence (string serviceid, string userid);
+extern int rmBindence (string serviceid, string userid);
+
+// 根据绑定情况获取用户socket(如果不存在则将此绑定解除)
+extern int getUserSocketWithBindence (string serviceid, string userid);
+
+// 根据用户id获取客服socket
+extern int getServiceSocketWithBindence (string userid);
+
+// 删除客服serviceSocket的所有绑定关系
+extern int rmBindence (string serviceid);
 
 #endif /** __BIND_H__ */
 
