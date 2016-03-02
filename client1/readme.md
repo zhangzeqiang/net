@@ -17,6 +17,7 @@
 用户-0, 不需要指定to用户id,默认从绑定关系中找目的客服id
  
 > ^SHD^{"route":"Send", "class":1, "to":"111", "msg": "First send1."}
+
 > ^SHD^{"route":"Send", "class":0, "msg": "First send1."}
 
 ### 新用户连接
@@ -30,6 +31,7 @@
 客服抢单api, action指定绑定用户id, unbind取消绑定
 
 > ^SHD^{"route":"Bind","action":"bind","to":"111", "msg": "First send."}
+
 > ^SHD^{"route":"Bind","action":"unbind","to":"111", "msg": "First send."}
 
 
