@@ -46,7 +46,9 @@ void onResolve (int iCliFd, char *buf)
         }
         cout << route << endl;
         char tmp[] = "CController";
-        char *tRoute = new char[strlen (route)+strlen (tmp)+1];
+        string first = route;
+        string second = tmp;
+        char *tRoute = new char[first.length()+second.length()+1];
         sprintf (tRoute, "C%sController", route);         
 
         cout << "--- 路由处理器: " << tRoute << " ------ " << endl;

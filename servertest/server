@@ -88,7 +88,11 @@ namespace Server {
                  
         memset(&sSvrAddr, 0, sizeof(sSvrAddr));   
         sSvrAddr.sin_family = AF_INET;   
-        sSvrAddr.sin_addr.s_addr = inet_addr(SERVERADDR);     
+        // 只能本地访问
+        // sSvrAddr.sin_addr.s_addr = inet_addr(SERVERADDR);     
+
+        // 任意ip可以访问
+        sSvrAddr.sin_addr.s_addr = htonl(INADDR_ANY);     
         sSvrAddr.sin_port = htons(PORT);
         iSvrFd = socket(AF_INET, SOCK_STREAM, 0);   
         bind(iSvrFd, (struct sockaddr*)&sSvrAddr, sizeof(sSvrAddr));   

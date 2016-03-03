@@ -19,7 +19,7 @@ struct event *pEvRead = new event;
 
 // 配置
 #define PORT 8888
-#define SERVERADDR "127.0.0.1"
+#define SERVERADDR "192.168.1.68"
 
 // 客户端socket连接符
 int _icliFd;
