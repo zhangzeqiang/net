@@ -14,8 +14,16 @@ class CSendController: public TCPController {
         CSendController () {}
         static void* GetInstance (void) {return new CSendController();}
         string index (int socket, string jsonStr);
-    
+        cJSON* newJData (const char* sMsg, const char* sTo, const char* serverid);   
 };
+
+cJSON* CSendController::newJData (const char* sMsg, const char* sTo, const char* serverid) {
+    cJSON* j_data = cJSON_CreateObject ();
+    cJSON_AddItemToObject (j_data, "msg", cJSON_CreateString (sMsg));
+    cJSON_AddItemToObject (j_data, "userid", cJSON_CreateString (sTo));
+    cJSON_AddItemToObject (j_data, "serverid", cJSON_CreateString (serverid));
+    return j_data;
+}
 
 string CSendController::index (int socket, string jsonStr) {
     /** 发送 */
@@ -23,50 +31,61 @@ string CSendController::index (int socket, string jsonStr) {
 
     cout << jsonStr << endl;
     // 分配内存
-    char* tBuff = new char[jsonStr.length ()];
-    strcpy (tBuff, jsonStr.c_str());
+    const char* tBuff = jsonStr.c_str();
     cJSON *root = cJSON_Parse (tBuff);
-
-    // 释放内存
-    delete tBuff;
-
+    if (root == NULL) {
+        respond (socket, "Send", "-6", "root is null", NULL);
+        cJSON_Delete (root);
+        return "root is null";
+    }
     cJSON *jClass = cJSON_GetObjectItem (root, "class");
     if (jClass == NULL) {
-        respond (socket, "Send", "0", "jClass is null", NULL);
+        respond (socket, "Send", "-3", "jClass is null", NULL);
+
+        cJSON_Delete (root);
         return "jClass is null";
     }
     int iClass = jClass->valueint;
+    cout << "2" << endl;
 
     cJSON *jMsg = cJSON_GetObjectItem (root, "msg");
     if (jMsg == NULL) {
-        respond (socket, "Send", "0", "jMsg is null", NULL);
+        respond (socket, "Send", "-1", "jMsg is null", NULL);
+        cJSON_Delete (root);
+
         return "jMsg is null";
     }
+    cout << "3" << endl;
+
     char* sMsg = jMsg->valuestring;
     if (sMsg == NULL) {
-        respond (socket, "Send", "0", "sMsg is null", NULL);
+        respond (socket, "Send", "-2", "sMsg is null", NULL);
+        cJSON_Delete (root);
+
         return "sMsg is null";
     }
+    cout << "4" << endl;
 
     int distSocket;
 
-    cJSON* j_data = cJSON_CreateObject ();
-    cJSON_AddItemToObject (j_data, "msg", cJSON_CreateString (sMsg));
+    cout << "5" << endl;
 
     if (iClass == SERVICE) {
-        cout << "service." << endl;
         // 客服发送消息,需要指定接收用户id且已经绑定过此客服的用户socket
-        cJSON *jTo = cJSON_GetObjectItem (root, "to");
+        cout << "service." << endl;
+        cJSON *jTo = cJSON_GetObjectItem (root, "toid");
         if (jTo == NULL) {
-            respond (socket, "Send", "0", "jTo is null", NULL);
+            respond (socket, "Send", "-4", "jTo is null", NULL);
+            cJSON_Delete (root);
             return "jTo is null";
         }
         char* sTo = jTo->valuestring;
         if (sTo == NULL) {
-            respond (socket, "Send", "0", "sTo is null", NULL);
+            respond (socket, "Send", "-5", "sTo is null", NULL);
+            cJSON_Delete (root);
             return "sTo is null";
         }
-        
+
         string sToUser = sTo;
         string sFromService = getUserWithSocket (socket, SERVICE);
         
@@ -74,30 +93,87 @@ string CSendController::index (int socket, string jsonStr) {
         if (0 == strcmp (sFromService.c_str(), "")) {
             // 不存在此客服
             respond (socket, "Send", "0", "Send sFromService is noexist.", NULL); 
+            cJSON_Delete (root);
             return "Send sFromService is noexist.";
         }
 
-        // 需要加入目的用户id
-        cJSON_AddItemToObject (j_data, "to", cJSON_CreateString (sTo));
-
         distSocket = getUserSocketWithBindence (sFromService, sTo); 
+
+        if (distSocket == NOEXIST) {
+            cJSON* j_data = newJData (sMsg, sTo, sFromService.c_str());
+            respond (socket, "Send", "0", "no bind user.", j_data); 
+        } else {
+            cJSON* j_data = newJData (sMsg, sTo, sFromService.c_str());
+            respond (socket, "Send", "1", "Send success.", j_data); 
+
+            j_data = newJData (sMsg, sTo, sFromService.c_str());
+            respond (distSocket, "Send", "2", "Send success.", j_data); 
+        }
     } else {
         cout << "user." << endl;
+        
         // 用户发送消息,不需要指定接受用户,目的socket在绑定表内查找
-
         string sFromUser = getUserWithSocket (socket, USER);
 
         if (sFromUser == "") {
             // 不存在此绑定
             respond (socket, "Send", "0", "Send sFromUser is noexist.", NULL); 
+            cJSON_Delete (root);
             return "Send sFromUser is noexist";
         }
+        cout << sFromUser << endl;
+ 
         distSocket = getServiceSocketWithBindence (sFromUser);
+
+        if (distSocket == NOEXIST) {
+            // 还未有客服服务,通知客服抢单
+            /** 获取所有在线客服socket,发送新用户抢单提醒 */
+            int i=0;
+            string s_tmp_server;
+            for (i=0;i<LEN_USERLISTS;i++) {
+                if (UserLists[i].state == USED && 
+                    UserLists[i].classify == SERVICE) {
+                    // 给所有在线的客服发送提醒
+                    int tmp_socket = UserLists[i].socket;
+                   
+                    cout << "1" << endl;
+
+                    s_tmp_server = getUserWithSocket (tmp_socket, SERVICE);
+                    
+                    if (0 != strcmp (s_tmp_server.c_str(), "")) {
+                        cJSON* j_data = newJData (sMsg, sFromUser.c_str(), s_tmp_server.c_str());
+                        respond (tmp_socket, "Acknowledge", "1", "new user.", j_data);
+                    }
+                    cout << "2" << endl;
+
+                } 
+            }
+
+            cout << "3" << endl;
+            if (0 != strcmp (s_tmp_server.c_str(), "")) {
+                cJSON* j_data = newJData (sMsg, sFromUser.c_str(), s_tmp_server.c_str());
+                respond (socket, "Acknowledge", "1", "already call for server.", j_data);
+            } else {
+                cJSON* j_data = newJData (sMsg, sFromUser.c_str(), s_tmp_server.c_str());
+                respond (socket, "Acknowledge", "2", "no server online.", j_data);
+            }
+            cJSON_Delete (root);
+            return "already call for server.";
+        } else {
+            cJSON* j_data = newJData (sMsg, sFromUser.c_str(), "null");
+            respond (socket, "Send", "1", "Send success.", j_data); 
+        }
+        cout << "4" << endl;
+        
+        string serverid_tmp = getServeridWithBindence (sFromUser);
+        cJSON* j_data = newJData (sMsg, sFromUser.c_str(), serverid_tmp.c_str());
+        cout << "5" << endl;
+
+        respond (distSocket, "Send", "2", "Send success.", j_data); 
     }
-    
-    respond (distSocket, "Send", "1", "Send success.", j_data); 
-    // 删除root
+    cout << "6" << endl;
     cJSON_Delete (root);
+    cout << "7" << endl;
 
     return "send msg."; 
 }

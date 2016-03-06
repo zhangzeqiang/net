@@ -14,7 +14,7 @@ include_cobj := $(patsubst include/%.c,include/%.o,$(wildcard include/*.c))
 include_cppobj := $(patsubst include/%.cpp,include/%.o,$(wildcard include/*.cpp))
 
 main:${cpp_obj} ${c_obj} ${pkg_cobj} ${pkg_cppobj} ${include_cobj} ${include_cppobj}
-	${TOOLS} -o $@ $^ -levent -I ${INC}
+	${TOOLS} -o $@ $^ -levent -pthread -I ${INC}
 
 # %cpp:%o
 #	${TOOLS} -o $@ $<   

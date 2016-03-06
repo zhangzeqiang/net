@@ -76,6 +76,9 @@ extern int getUserSocketWithBindence (string serviceid, string userid);
 // 根据用户id获取客服socket
 extern int getServiceSocketWithBindence (string userid);
 
+// 根据用户id获取客服userid
+extern string getServeridWithBindence (string userid);
+
 // 删除客服serviceSocket的所有绑定关系
 extern int rmBindence (string serviceid);
 

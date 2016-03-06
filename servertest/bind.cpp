@@ -210,6 +210,21 @@ int getUserSocketWithBindence (string serviceid, string userid) {
     return NOEXIST;
 }
 
+string getServeridWithBindence (string userid) {
+    int i=0;
+
+    for (i=0;i<LEN_BINDENCE;i++) {
+        if (BindLists[i].state == USED && 
+                BindLists[i].userid == userid) {
+            // 存在此绑定,获取客服socket
+            return BindLists[i].serviceid;
+        }
+    }
+
+    // 返回不存在绑定,此用户为新用户
+    return "";
+}
+
 int getServiceSocketWithBindence (string userid) {
     
     int i=0;

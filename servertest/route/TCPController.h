@@ -27,18 +27,18 @@ class TCPController
         /** 往socket写入数据 */
         int writeWithDefaultHeader (int socket, const char* buf) {
             char header[] = "^SHU^";    
-            char *tmpBuf = new char[strlen (header)+strlen(buf)+1];
+            char *tmpBuf = (char *)malloc(sizeof (char)*(strlen(header)+strlen(buf)+1));
             sprintf (tmpBuf, "%s%s", header, buf); 
+
             int result = onReturn (socket, tmpBuf);
-            delete tmpBuf;
+            free(tmpBuf);
             return result;
         } 
 
         /** 写JSON数据(包括默认报头) */
         int respond (int socket, char const* s_action, char const* s_errcode,
                 char const* s_errmsg, cJSON* j_data) {
-            cJSON *root;
-            root = cJSON_CreateObject ();
+            cJSON* root = cJSON_CreateObject ();
             cJSON_AddItemToObject (root, "action", cJSON_CreateString (s_action));
             cJSON_AddItemToObject (root, "errcode", cJSON_CreateString (s_errcode));
             cJSON_AddItemToObject (root, "errmsg", cJSON_CreateString (s_errmsg));
@@ -46,7 +46,9 @@ class TCPController
                 // 如果j_data不为空
                 cJSON_AddItemToObject (root, "data", j_data);
             }
-            writeWithDefaultHeader (socket, cJSON_Print (root)); 
+            writeWithDefaultHeader (socket, cJSON_Print(root)); 
+
+            cJSON_Delete (root);
         } 
 
     private:

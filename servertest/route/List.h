@@ -25,6 +25,7 @@ string CListController::index (int socket, string jsonStr) {
     int i = 0;
     char tmp[1024];
     sprintf (tmp, "%s", ""); 
+
     for (i=0;i<LEN_USERLISTS;i++) {
         if (UserLists[i].state == USED) {
             

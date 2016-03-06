@@ -18,6 +18,12 @@ using namespace std;
 // 配置
 
 namespace Server {
+    struct sock_ev {
+        struct event* read_ev;
+        struct event* write_ev;
+        int fd;
+    };
+
     // 事件
     struct event_base* base;
     char* SERVERADDR; 
@@ -27,39 +33,25 @@ namespace Server {
     void onAccept(int iSvrFd, short iEvent, void *arg); 
     void config (const char* ip, const char* port);
     void run ();
+    void *onAcceptThread (void *arg);
 
     void config (char* ip, int port) {
         PORT = port;
-        SERVERADDR = (char*) malloc (strlen (ip));
-        strcpy (SERVERADDR, ip);
-    }
-
-    void release () {
-        if (SERVERADDR == NULL) {
-            return ;    
-        }
-        free (SERVERADDR);
+        SERVERADDR = ip;
     }
 
     void onRead(int iCliFd, short iEvent, void *arg) 
     { 
         int iLen; 
         char buf[1500]; 
-       
-        // cout<< "等待客户端数据... " << endl;
+        struct sock_ev *ev = (struct sock_ev*) arg; 
 
+        // cout<< "等待客户端数据... " << endl;
         iLen = read (iCliFd, buf, sizeof (buf)); 
        
         if (iLen <= 0) { 
             cout << "客户机断开连接..." << endl; 
-            // 连接结束=0 | 连接错误<0, 将事件池删除并释放内存空间
-            struct event *pEvRead = (struct event*)arg; 
-            event_del(pEvRead); 
-            delete pEvRead; 
-                          
-            close(iCliFd); 
-
-            onClose (iCliFd);
+            event_del (ev->read_ev);
             return;
         }
 
@@ -69,19 +61,43 @@ namespace Server {
 
     void onAccept(int iSvrFd, short iEvent, void *arg) 
     { 
-        int iCliFd; 
+        int *iptr; 
         struct sockaddr_in sCliAddr; 
         cout<< "客户端新连接... " << endl;
        
         socklen_t iSinSize = sizeof(sCliAddr); 
-        iCliFd = accept(iSvrFd, (struct sockaddr*)&sCliAddr, &iSinSize); 
+
+        struct sock_ev *ev = (struct sock_ev*) malloc (sizeof (struct sock_ev));
+
+        ev->fd = accept(iSvrFd, (struct sockaddr*)&sCliAddr, &iSinSize); 
         
-        struct event *pEvRead = new event; 
-        event_set(pEvRead, iCliFd, EV_READ|EV_PERSIST, onRead, pEvRead); 
-        event_base_set(Server::base, pEvRead); 
-        event_add(pEvRead, NULL);
+        pthread_t tid;
+        // 新线程
+        pthread_create (&tid, NULL, onAcceptThread, ev);
     }
 
+    // 新线程
+    void *onAcceptThread (void *arg) {
+        struct sock_ev *ev = (struct sock_ev *)arg;
+        int iCliFd = ev->fd;
+        // 创建新线程执行
+        struct event_base* pthread_base = event_base_new ();
+  
+        ev->read_ev = event_new(pthread_base, iCliFd, EV_READ|EV_PERSIST, onRead, ev); 
+        event_add (ev->read_ev, NULL);
+        
+        event_base_dispatch (pthread_base);  
+
+        event_free (ev->read_ev);
+        event_base_free (pthread_base);
+
+        // 连接结束=0 | 连接错误<0, 将事件池删除并释放内存空间
+        close(iCliFd); 
+        onClose (iCliFd);
+         
+        free (arg);
+    } 
+    
     void run () {
         int iSvrFd;   
         struct sockaddr_in sSvrAddr; 
@@ -97,23 +113,24 @@ namespace Server {
         iSvrFd = socket(AF_INET, SOCK_STREAM, 0);   
         bind(iSvrFd, (struct sockaddr*)&sSvrAddr, sizeof(sSvrAddr));   
         listen(iSvrFd, 10);
-        base = event_base_new ();
 
         /** 初始化UserLists列表 */
         emptyUserLists();
 
+        Server::base = event_base_new ();
         cout<< "服务器成功启动" << endl;
-        struct event evListen;
+        struct event *evListen;
 
         // 设置事件 
-        event_set(&evListen, iSvrFd, EV_READ|EV_PERSIST, onAccept, NULL); 
+        evListen = event_new(Server::base, iSvrFd, EV_READ|EV_PERSIST, onAccept, NULL);
         // 设置为base事件 
-        event_base_set(base, &evListen); 
-        // 添加事件 
-        event_add(&evListen, NULL); 
-
+        event_add(evListen, NULL); 
         // 事件循环 
-        event_base_dispatch(base); 
+        event_base_dispatch(Server::base); 
+
+        // 释放事件池
+        event_free(evListen);
+        event_base_free(Server::base);
     }
 };
 
