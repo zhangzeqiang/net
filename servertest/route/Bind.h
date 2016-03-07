@@ -73,42 +73,48 @@ string CBindController::index (int socket, string jsonStr) {
     // 新的data json 节点
     cJSON* j_data = cJSON_CreateObject ();
     cJSON_AddItemToObject (j_data, "serverid", cJSON_CreateString (s_servicer.c_str()));
-    cJSON_AddItemToObject (j_data, "", cJSON_CreateString (sAction));
+    cJSON_AddItemToObject (j_data, "action", cJSON_CreateString (sAction));
     cJSON_AddItemToObject (j_data, "userid", cJSON_CreateString (sToUser));
 
     if (0 == strcmp (s_action.c_str(), "bind")) {
 
-
         /** 客服绑定请求 */
         cout << "bind"  << endl;
         int ret = addBindence (s_servicer, s_user); 
-                
+        cout << "1"  << endl;
+       
         if (ret == FAIL) {
+            cout << "11"  << endl;
+
             respond (socket, "Bind", "0", "bind error", j_data);
+            cout << "12"  << endl;
+
             cJSON_Delete (root);
+            cout << "13"  << endl;
+
             return "bind error";
         }
+        cout << "2"  << endl;
 
-        cout << "1" << endl;
         // 通知用户,有客服来服务了
         int userSocket = getSocketWithUserid (s_user, USER);
-        cout << "2" << endl;
 
         if (userSocket != NOEXIST) {
             respond (userSocket, "Bind", "1", "bind success", j_data);
         } else {
             respond (userSocket, "Bind", "-7", "bind fail", j_data);
         }
-        cout << "3" << endl;
 
+        cout << "3"  << endl;
         cJSON* j_data = cJSON_CreateObject ();
         cJSON_AddItemToObject (j_data, "serverid", cJSON_CreateString (s_servicer.c_str()));
         cJSON_AddItemToObject (j_data, "action", cJSON_CreateString (sAction));
         cJSON_AddItemToObject (j_data, "userid", cJSON_CreateString (sToUser));
+        cout << "4"  << endl;
 
         respond (socket, "Bind", "1", "bind success", j_data);
-        cout << "4" << endl;
 
+        cout << "5"  << endl;
         cJSON_Delete (root);
         return "bind success";
     } else if (0 == strcmp (s_action.c_str(), "unbind")) {

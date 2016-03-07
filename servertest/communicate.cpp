@@ -2,7 +2,25 @@
 
 int onClose (int iCliFd) {
     /** 取消绑定 */
-    unbindUserAndSocket (iCliFd);
+    int i = 0;
+    
+    /** 在使用前要先保证userid和socket的合法性*/
+    for (i=0;i<LEN_USERLISTS;i++) {
+        if (UserLists[i].state == USED && 
+            UserLists[i].socket == iCliFd) {
+            UserLists[i].state = UNUSED;    
+            
+            // 关系表中有此用户名的删除
+            int j = 0; 
+            for (j=0;j<LEN_BINDENCE;j++) {
+                if (BindLists[j].state == USED && 
+                    (UserLists[i].userid == BindLists[j].userid || 
+                        UserLists[i].userid == BindLists[j].serviceid)) {
+                    BindLists[j].state = UNUSED;
+                }
+            }
+        }    
+    }
 }
 
 void onResolve (int iCliFd, char *buf) 

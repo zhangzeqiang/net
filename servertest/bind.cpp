@@ -63,7 +63,7 @@ int unbindUserAndSocket (string userid, int classify)
     for (i=0;i<LEN_USERLISTS;i++) {
         if (UserLists[i].state == USED && 
             UserLists[i].userid == userid) {
-            UserLists[i].state == UNUSED;    
+            UserLists[i].state = UNUSED;    
             return SUCCESS;
         }    
     }
@@ -78,7 +78,7 @@ int unbindUserAndSocket (int socket)
     for (i=0;i<LEN_USERLISTS;i++) {
         if (UserLists[i].state == USED && 
             UserLists[i].socket == socket) {
-            UserLists[i].state == UNUSED;    
+            UserLists[i].state = UNUSED;    
             return SUCCESS;
         }    
     }

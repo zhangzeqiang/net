@@ -46,12 +46,18 @@ namespace Server {
         char buf[1500]; 
         struct sock_ev *ev = (struct sock_ev*) arg; 
 
-        // cout<< "等待客户端数据... " << endl;
+        cout<< "等待客户端数据... " << endl;
         iLen = read (iCliFd, buf, sizeof (buf)); 
        
         if (iLen <= 0) { 
-            cout << "客户机断开连接..." << endl; 
             event_del (ev->read_ev);
+            cout << "客户机断开连接..." << endl; 
+            onClose (iCliFd);
+            // 连接结束=0 | 连接错误<0, 将事件池删除并释放内存空间
+            close (iCliFd);
+            event_free (ev->read_ev);
+
+            free (ev);
             return;
         }
 
@@ -70,32 +76,14 @@ namespace Server {
         struct sock_ev *ev = (struct sock_ev*) malloc (sizeof (struct sock_ev));
 
         ev->fd = accept(iSvrFd, (struct sockaddr*)&sCliAddr, &iSinSize); 
-        
-        pthread_t tid;
-        // 新线程
-        pthread_create (&tid, NULL, onAcceptThread, ev);
+
+        ev->read_ev = event_new(Server::base, ev->fd, EV_READ|EV_PERSIST, onRead, ev); 
+        event_add (ev->read_ev, NULL);
+
     }
 
     // 新线程
     void *onAcceptThread (void *arg) {
-        struct sock_ev *ev = (struct sock_ev *)arg;
-        int iCliFd = ev->fd;
-        // 创建新线程执行
-        struct event_base* pthread_base = event_base_new ();
-  
-        ev->read_ev = event_new(pthread_base, iCliFd, EV_READ|EV_PERSIST, onRead, ev); 
-        event_add (ev->read_ev, NULL);
-        
-        event_base_dispatch (pthread_base);  
-
-        event_free (ev->read_ev);
-        event_base_free (pthread_base);
-
-        // 连接结束=0 | 连接错误<0, 将事件池删除并释放内存空间
-        close(iCliFd); 
-        onClose (iCliFd);
-         
-        free (arg);
     } 
     
     void run () {
@@ -112,13 +100,17 @@ namespace Server {
         sSvrAddr.sin_port = htons(PORT);
         iSvrFd = socket(AF_INET, SOCK_STREAM, 0);   
         bind(iSvrFd, (struct sockaddr*)&sSvrAddr, sizeof(sSvrAddr));   
-        listen(iSvrFd, 10);
-
+        if (listen(iSvrFd, 10) < 0) {
+            cout << "listen error." << endl;
+            return ;
+        } else {
+            cout<< "服务器成功启动" << endl;
+        }
+        
         /** 初始化UserLists列表 */
         emptyUserLists();
 
         Server::base = event_base_new ();
-        cout<< "服务器成功启动" << endl;
         struct event *evListen;
 
         // 设置事件 
@@ -131,6 +123,8 @@ namespace Server {
         // 释放事件池
         event_free(evListen);
         event_base_free(Server::base);
+
+        close (iSvrFd);
     }
 };
 

@@ -46,7 +46,6 @@ string CSendController::index (int socket, string jsonStr) {
         return "jClass is null";
     }
     int iClass = jClass->valueint;
-    cout << "2" << endl;
 
     cJSON *jMsg = cJSON_GetObjectItem (root, "msg");
     if (jMsg == NULL) {
@@ -55,7 +54,6 @@ string CSendController::index (int socket, string jsonStr) {
 
         return "jMsg is null";
     }
-    cout << "3" << endl;
 
     char* sMsg = jMsg->valuestring;
     if (sMsg == NULL) {
@@ -64,11 +62,8 @@ string CSendController::index (int socket, string jsonStr) {
 
         return "sMsg is null";
     }
-    cout << "4" << endl;
 
     int distSocket;
-
-    cout << "5" << endl;
 
     if (iClass == SERVICE) {
         // 客服发送消息,需要指定接收用户id且已经绑定过此客服的用户socket
@@ -136,20 +131,16 @@ string CSendController::index (int socket, string jsonStr) {
                     // 给所有在线的客服发送提醒
                     int tmp_socket = UserLists[i].socket;
                    
-                    cout << "1" << endl;
-
                     s_tmp_server = getUserWithSocket (tmp_socket, SERVICE);
                     
                     if (0 != strcmp (s_tmp_server.c_str(), "")) {
                         cJSON* j_data = newJData (sMsg, sFromUser.c_str(), s_tmp_server.c_str());
                         respond (tmp_socket, "Acknowledge", "1", "new user.", j_data);
                     }
-                    cout << "2" << endl;
 
                 } 
             }
 
-            cout << "3" << endl;
             if (0 != strcmp (s_tmp_server.c_str(), "")) {
                 cJSON* j_data = newJData (sMsg, sFromUser.c_str(), s_tmp_server.c_str());
                 respond (socket, "Acknowledge", "1", "already call for server.", j_data);
@@ -163,17 +154,13 @@ string CSendController::index (int socket, string jsonStr) {
             cJSON* j_data = newJData (sMsg, sFromUser.c_str(), "null");
             respond (socket, "Send", "1", "Send success.", j_data); 
         }
-        cout << "4" << endl;
         
         string serverid_tmp = getServeridWithBindence (sFromUser);
         cJSON* j_data = newJData (sMsg, sFromUser.c_str(), serverid_tmp.c_str());
-        cout << "5" << endl;
 
         respond (distSocket, "Send", "2", "Send success.", j_data); 
     }
-    cout << "6" << endl;
     cJSON_Delete (root);
-    cout << "7" << endl;
 
     return "send msg."; 
 }
