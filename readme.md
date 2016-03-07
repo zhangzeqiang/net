@@ -16,8 +16,6 @@ client1
 5. 客户进程可执行action#list，服务器会返回当前所有连接情况。
 6. 客户进程可执行action#send^to#1^msg#Hello id1.向用户id1发送消息msg.
 
-## 截图
-
 
 ### 执行make出现错误
 

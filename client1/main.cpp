@@ -117,11 +117,12 @@ int main (int arg, char* argv[]) {
     
     base = event_base_new ();
 
-    
     int iresult = connect(iCliFd, (struct sockaddr*)&sSvrAddr, sizeof (sSvrAddr));
 
     if (iresult == 0) {
        onConnect(iCliFd);
+    } else {
+        cout << "connect error." << endl;
     } 
 
     // 事件循环 
